@@ -4,11 +4,11 @@ import random
 from PIL import ImageGrab 
 
 # Colors of the mine floor. Adjust as needed.
-GROUND_COLORS  = [(103, 80, 76, 255)]
+GROUND_COLORS  = [(103, 80, 76, 255), (94, 70, 67, 255)]
 
 # Adjust this if you want to expand or shrink the mining region (x, y)  
-MINPOINT = (540, 445)
-MAXPOINT = (750, 530)
+MINPOINT = (840, 700)
+MAXPOINT = (960, 870)
 
 # Time (in seconds) to spend mining in place. Change as needed.
 MINING_TIME = 30
@@ -32,11 +32,11 @@ def mine():
         for dy in range(10):
             color = image.getpixel((dx, dy))
             if color not in GROUND_COLORS:
-                print('Clicked color: %s' % (color))
+                print("Clicked color: %s" % (str(color)))
                 return
             
     # Click to walk 
-    print('Walking to: x: %s, y: %s' % (str(x), str(y)))
+    print("Walking to: x: %s, y: %s" % (str(x), str(y)))
     pag.click(x, y)
 
     time.sleep(AVERAGE_WALKING_TIME + random.uniform(-1.0, 1.0)) 
