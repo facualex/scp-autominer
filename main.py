@@ -1,10 +1,7 @@
-# auto mining script
-
-# make sure you have the following modules
 import pyautogui as pag
 import time
 import random
-from PIL import ImageGrab # we only want imagegrab module
+from PIL import ImageGrab 
 
 # Colors of the mine floor. Adjust as needed.
 GROUND_COLORS  = [(103, 80, 76, 255)]
