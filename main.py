@@ -1,30 +1,36 @@
 import pyautogui as pag
+from PIL import ImageGrab 
 import time
 import random
-from PIL import ImageGrab 
 
-# Colors of the mine floor. Adjust as needed.
+"""
+###############################
+## VARIABLE DEFINITIONS.
+## Ajust variables as needed.
+###################################
+"""
+# Colors of the mine floor
 GROUND_COLORS  = [(103, 80, 76, 255), (94, 70, 67, 255)]
 
-# Adjust this if you want to expand or shrink the mining region (x, y)  
+# Mining region coordinates (x, y)  
 MINPOINT = (840, 700)
 MAXPOINT = (960, 870)
 
-# Time (in seconds) to spend mining in place. Change as needed.
+# Time (in seconds) to spend mining in place.
 MINING_TIME = 30
 
-# Average walking time (adjust as needed)
+# Average walking time (in seconds).
 AVERAGE_WALKING_TIME = 2.5
 
 def mine():
-    # get random position within the defined mining area
+    # Get random position within the defined mining area
     x, y = random.randint(MINPOINT[0], MAXPOINT[0]), random.randint(MINPOINT[1], MAXPOINT[1]) 
     
-    # using pillows imagegrab module to get the mining region
+    # Using pillows imagegrab module to get the mining region
     image = ImageGrab.grab((x - 5, y - 5, x + 5, y + 5))
     
     # Uncomment this if you want to check which color is being grabbed
-    #image.show()
+    # image.show()
 
     # Prevent accidental clicks on other penguins
     color = (0, 0, 0)
@@ -41,7 +47,7 @@ def mine():
 
     time.sleep(AVERAGE_WALKING_TIME + random.uniform(-1.0, 1.0)) 
 
-    # start dancing which is mining in a average situation
+    # Start mining (assumes you have your mining helmet on, if you don't the penguin will dance instead)
     print("Mining started...")
     pag.press("d") 
 
@@ -50,7 +56,7 @@ def mine():
 
     print("Done mining, finding new place to mine...")
     
-# We dont want to run this if it is getting used as a module
+# Don't run the script if it's being used as a module.
 if __name__ == "__main__":
     while True:
         mine()
