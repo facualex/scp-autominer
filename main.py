@@ -38,11 +38,13 @@ def mine():
         for dy in range(10):
             color = image.getpixel((dx, dy))
             if color not in GROUND_COLORS:
-                print("Clicked color: %s" % (str(color)))
+                print("NOT VALID COLOR: %s" % (str(color)))
+                print("Looking for new location...")
                 return
             
     # Click to walk 
     print("Walking to: x: %s, y: %s" % (str(x), str(y)))
+    print("Ground Color: %s" % (str(color)))
     pag.click(x, y)
 
     time.sleep(AVERAGE_WALKING_TIME + random.uniform(-1.0, 1.0)) 
