@@ -3,24 +3,25 @@ from PIL import ImageGrab
 import time
 import random
 
-"""
 ###############################
 ## VARIABLE DEFINITIONS.
 ## Ajust variables as needed.
 ###################################
-"""
+
 # Colors of the mine floor
-GROUND_COLORS  = [(103, 80, 76, 255), (94, 70, 67, 255)]
+# For Mac OS colors must be: (r, g, b, a)
+# For Windows colors must be: (r, g, b)
+GROUND_COLORS  = [(103, 80, 76, 255), (94, 70, 67, 255), (99, 81, 77, 255)]
 
 # Mining region coordinates (x, y)  
-MINPOINT = (840, 700)
-MAXPOINT = (960, 870)
+MINPOINT = (600, 520)
+MAXPOINT = (800, 640)
 
 # Time (in seconds) to spend mining in place.
-MINING_TIME = 30
+MINING_TIME = 20
 
 # Average walking time (in seconds).
-AVERAGE_WALKING_TIME = 2.5
+AVERAGE_WALKING_TIME = 2
 
 def mine():
     # Get random position within the defined mining area
@@ -57,6 +58,24 @@ def mine():
     time.sleep(MINING_TIME + random.uniform(-5.0, 5.0))
 
     print("Done mining, finding new place to mine...")
+
+# Utility function
+def get_region_colors(MINPOINT: tuple, MAXPOINT: tuple):
+    min_x, min_y = MINPOINT[0], MINPOINT[1]
+    max_x, max_y = MAXPOINT[0], MAXPOINT[1]
+
+    # grab -> (left_x, top_y, right_x, bottom_y)
+    mining_zone_image = ImageGrab.grab((min_x, min_y, max_x, max_y))
+
+    # Deconstruct image into a list pixels (store pixel color into list)
+    color_set = set()
+
+    for x in range(0, max_x - min_x):
+       for y in range(0, max_y - min_y):
+            color_set.add(mining_zone_image.getpixel((x, y)))
+
+    print("Colors in region: %s" % (color_set))
+    mining_zone_image.show()
     
 # Don't run the script if it's being used as a module.
 if __name__ == "__main__":
