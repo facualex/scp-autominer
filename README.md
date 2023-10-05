@@ -44,5 +44,8 @@ You can adjust any variable as needed according to your needs.
 | MINING_TIME          | Double | Time spent mining before moving on to another spot.                                                                                | seconds                          | 30                                      |
 | AVERAGE_WALKING_TIME | Double | Time the penguin spends moving to another spot. Used to wait before it starts to mine again.                                       | seconds                          | 2.5                                     |
 
+
 ## Troubleshooting
 
+1. **The penguin is not moving**:
+   - Make sure that the *GROUND_COLORS* list contains the correct color of the ground you are mining on. You can use the `get_region_colors`  function to get a list of the colors contained in the mining ground. 

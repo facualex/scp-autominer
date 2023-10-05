@@ -59,7 +59,10 @@ def mine():
 
     print("Done mining, finding new place to mine...")
 
-# Utility function
+###############################
+## UTILITY FUNCTIONS
+###################################
+
 def get_region_colors(MINPOINT: tuple, MAXPOINT: tuple):
     min_x, min_y = MINPOINT[0], MINPOINT[1]
     max_x, max_y = MAXPOINT[0], MAXPOINT[1]
@@ -67,9 +70,11 @@ def get_region_colors(MINPOINT: tuple, MAXPOINT: tuple):
     # grab -> (left_x, top_y, right_x, bottom_y)
     mining_zone_image = ImageGrab.grab((min_x, min_y, max_x, max_y))
 
-    # Deconstruct image into a list pixels (store pixel color into list)
+    # Deconstruct image into a list pixels (store pixel color into set)
     color_set = set()
 
+    # (max_x - min_x): Number of pixels on the x-axis of the selected area.
+    # (max_y - min_y): Number of pixels on the y-axis of the selected area.
     for x in range(0, max_x - min_x):
        for y in range(0, max_y - min_y):
             color_set.add(mining_zone_image.getpixel((x, y)))
