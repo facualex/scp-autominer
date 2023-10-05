@@ -4,7 +4,7 @@ import time
 import random
 
 ###############################
-## VARIABLE DEFINITIONS.
+## VARIABLE DEFINITIONS
 ## Ajust variables as needed.
 ###################################
 
@@ -22,6 +22,10 @@ MINING_TIME = 20
 
 # Average walking time (in seconds).
 AVERAGE_WALKING_TIME = 2
+
+####################
+## MAIN FUNCTION
+####################
 
 def mine():
     # Get random position within the defined mining area
